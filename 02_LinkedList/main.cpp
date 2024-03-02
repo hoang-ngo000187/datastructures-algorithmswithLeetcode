@@ -191,19 +191,53 @@ class LinkedList {
             length++;
             return true;
         }
+
+        void deleteNode(int mIndex)
+        {
+            if (mIndex < 0 || mIndex > length)
+            {
+                return; // can not delete
+            }
+            if (0 == mIndex)
+            {
+                return deleteFirst();
+            }
+            if (mIndex == length - 1)
+            {
+                return deleteLast();
+            }
+
+            Node* pre = get(mIndex - 1);
+            Node* temp = pre->next; // Node in index = mIndex
+            
+            pre->next = temp->next;
+            delete temp;
+            length--;
+        }
 };
 
 int main()
 {
-    LinkedList* myLinkedList = new LinkedList(11);
+    LinkedList* myLinkedList = new LinkedList(0);
+    myLinkedList->append(1);
+    myLinkedList->append(2);
     myLinkedList->append(3);
-    myLinkedList->append(23);
-    myLinkedList->append(7);
-    cout << "Before insert 100 in index 2: \n";
+    myLinkedList->append(4);
+    myLinkedList->append(5);
+    cout << "Before delete Node in index 3: \n";
     myLinkedList->printList();
 
-    myLinkedList->insert(2, 100);
-    cout << "After insert 100 in index 2: \n";
+    cout << "After delete Node in index 3: \n";
+    myLinkedList->deleteNode(3);
     myLinkedList->printList();
+
+    cout << "Delete the first Node\n";
+    myLinkedList->deleteNode(0);
+    myLinkedList->printList();
+
+    cout << "Delete the last Node\n";
+    myLinkedList->deleteNode(3);
+    myLinkedList->printList();
+
     return 0;
 }
