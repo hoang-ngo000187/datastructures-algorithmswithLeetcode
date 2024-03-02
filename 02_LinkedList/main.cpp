@@ -166,6 +166,31 @@ class LinkedList {
             }
             return false;
         }
+
+        bool insert(int mIndex, int mValue)
+        {
+            if (mIndex < 0 || mIndex > length)
+            {
+                return false;
+            }
+            if (0 == mIndex)
+            {
+                prepend(mValue);
+                return true;
+            }
+            if (mIndex == length)
+            {
+                append(mValue);
+                return true;
+            }
+            
+            Node* newNode = new Node(mValue);
+            Node* temp = get(mIndex - 1);
+            newNode->next = temp->next;
+            temp->next = newNode;
+            length++;
+            return true;
+        }
 };
 
 int main()
@@ -174,8 +199,11 @@ int main()
     myLinkedList->append(3);
     myLinkedList->append(23);
     myLinkedList->append(7);
+    cout << "Before insert 100 in index 2: \n";
+    myLinkedList->printList();
 
-    myLinkedList->set(1, 4);
+    myLinkedList->insert(2, 100);
+    cout << "After insert 100 in index 2: \n";
     myLinkedList->printList();
     return 0;
 }
