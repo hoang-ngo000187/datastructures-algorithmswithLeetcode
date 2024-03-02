@@ -80,15 +80,71 @@ class LinkedList {
             // Increase the length
             length++;
         }
-};  
+
+        void deleteLast()
+        {
+            /*Case 01: Linked List is empty */
+            if (0 == length)    return;
+            /*Case 02: Linked List has more than 2 Node   */
+            Node* temp = head;
+            Node* pre = head;
+
+            while (nullptr != temp->next)
+            {
+                pre = temp;
+                temp = temp->next;
+            }
+            tail = pre;
+            tail->next = nullptr;
+            length--;
+            if (0 == length)
+            {
+                head = nullptr;
+                tail = nullptr;
+            }
+            delete temp;
+        }
+};
 
 int main()
 {
     LinkedList* myLinkedList = new LinkedList(1);
-    // Append value 2 to linked list
     myLinkedList->append(2);
 
+    cout << "LL before deleteLast(): \n";
+    myLinkedList->printList();
+
+    myLinkedList->deleteLast();
+    cout << "\n\nLL after frist deleteLast(): \n";
+    myLinkedList->printList();
+
+    myLinkedList->deleteLast();
+    cout << "\n\nLL after second deleteLast(): \n";
+    myLinkedList->printList();
+
+    myLinkedList->deleteLast();
+    cout << "\n\nLL after third deleteLast(): \n";
     myLinkedList->printList();
 
     return 0;
 }
+
+/*
+Result
+
+LL before deleteLast(): 
+1
+2
+
+
+LL after frist deleteLast():
+1
+
+
+LL after second deleteLast():
+
+
+LL after third deleteLast():
+
+
+*/
