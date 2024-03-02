@@ -60,17 +60,35 @@ class LinkedList {
         void getLength() {
             cout << "Length: " << length << endl;
         }
+
+        void append(int mValue)
+        {
+            Node* newNode = new Node(mValue); // create a new Node
+
+            // Check if current Linked List is null or not
+            if (0 == length) // or we can check head == nullptr or tail == nullprt
+            {
+                head = newNode;
+                tail = newNode;
+            }
+            else
+            {
+                tail->next = newNode;
+                tail = newNode;
+            }
+            
+            // Increase the length
+            length++;
+        }
 };  
 
 int main()
 {
-    LinkedList* myLinkedList = new LinkedList(4);
-
-    myLinkedList->getHead();
-    myLinkedList->getTail();
-    myLinkedList->getLength();
+    LinkedList* myLinkedList = new LinkedList(1);
+    // Append value 2 to linked list
+    myLinkedList->append(2);
 
     myLinkedList->printList();
-    
+
     return 0;
 }
