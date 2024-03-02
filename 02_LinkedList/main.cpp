@@ -123,13 +123,43 @@ class LinkedList {
             }
             length++;
         }
+
+        void deleteFirst()
+        {
+            if(0 == length)     return;
+            Node* temp = head;
+            if(1 == length)
+            {
+                head = nullptr;
+                tail = nullptr;
+            }
+            else
+            {
+                head = head->next;
+            }
+            delete temp;
+            length--;
+        }
 };
 
 int main()
 {
     LinkedList* myLinkedList = new LinkedList(2);
     myLinkedList->append(3);
-    myLinkedList->prepend(1);
+    
+    cout << "LL before deleteFirst(): \n";
+    myLinkedList->printList();
+
+    myLinkedList->deleteFirst();
+    cout << "LL after 1st deleteFirst(): \n";
+    myLinkedList->printList();
+
+    myLinkedList->deleteFirst();
+    cout << "LL after 2nd deleteFirst(): \n";
+    myLinkedList->printList();
+
+    myLinkedList->deleteFirst();
+    cout << "LL after 3rd deleteFirst(): \n";
     myLinkedList->printList();
 
     return 0;
