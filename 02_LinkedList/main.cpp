@@ -28,6 +28,18 @@ class LinkedList {
             tail = newNode;
             length = 1;
         }
+        
+        /* Destructor */
+        ~LinkedList() {
+            Node* temp = head;
+            while (nullptr != head)
+            {
+                head = head->next;
+                delete temp;
+                temp = head;
+            }
+            /* head, tail and length are deleted by "Default Destructor" */
+        }
 
         void printList() {
             Node* temp = head;
