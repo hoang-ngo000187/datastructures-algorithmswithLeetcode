@@ -87,22 +87,24 @@ class LinkedList {
             if (0 == length)    return;
             /*Case 02: Linked List has more than 2 Node   */
             Node* temp = head;
-            Node* pre = head;
-
-            while (nullptr != temp->next)
-            {
-                pre = temp;
-                temp = temp->next;
-            }
-            tail = pre;
-            tail->next = nullptr;
-            length--;
-            if (0 == length)
+            if (1 == length)
             {
                 head = nullptr;
                 tail = nullptr;
             }
+            else
+            {
+                Node* pre = head;
+                while (nullptr != temp->next)
+                {
+                    pre = temp;
+                    temp = temp->next;
+                }
+                tail = pre;
+                tail->next = nullptr;
+            }
             delete temp;
+            length--;
         }
 };
 
