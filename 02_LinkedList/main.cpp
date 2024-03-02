@@ -28,11 +28,37 @@ class LinkedList {
             tail = newNode;
             length = 1;
         }
+
+        void printList() {
+            Node* temp = head;
+            while(temp != nullptr) {
+                cout << temp->value << endl;
+                temp = temp->next;
+            }
+        }
+
+        void getHead() {
+            cout << "Head: " << head->value << endl;
+        }
+
+        void getTail() {
+            cout << "Tail: " << tail->value << endl;
+        }
+
+        void getLength() {
+            cout << "Length: " << length << endl;
+        }
 };  
 
 int main()
 {
     LinkedList* myLinkedList = new LinkedList(4);
+
+    myLinkedList->getHead();
+    myLinkedList->getTail();
+    myLinkedList->getLength();
+
+    myLinkedList->printList();
     
     return 0;
 }
