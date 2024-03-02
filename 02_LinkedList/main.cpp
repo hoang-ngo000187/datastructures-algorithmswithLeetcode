@@ -140,27 +140,29 @@ class LinkedList {
             delete temp;
             length--;
         }
+
+        Node* get(int mIndex)
+        {
+            if (mIndex < 0 || mIndex >= length)
+            {
+                return nullptr;
+            }
+            Node* temp = head;
+            for(int i = 0; i < mIndex; i++)
+            {
+                temp = temp->next;
+            }
+            return temp;
+        }
 };
 
 int main()
 {
-    LinkedList* myLinkedList = new LinkedList(2);
+    LinkedList* myLinkedList = new LinkedList(0);
+    myLinkedList->append(1);
+    myLinkedList->append(2);
     myLinkedList->append(3);
-    
-    cout << "LL before deleteFirst(): \n";
-    myLinkedList->printList();
 
-    myLinkedList->deleteFirst();
-    cout << "LL after 1st deleteFirst(): \n";
-    myLinkedList->printList();
-
-    myLinkedList->deleteFirst();
-    cout << "LL after 2nd deleteFirst(): \n";
-    myLinkedList->printList();
-
-    myLinkedList->deleteFirst();
-    cout << "LL after 3rd deleteFirst(): \n";
-    myLinkedList->printList();
-
+    cout << myLinkedList->get(2)->value;
     return 0;
 }
