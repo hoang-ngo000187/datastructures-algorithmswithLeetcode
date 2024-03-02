@@ -106,47 +106,31 @@ class LinkedList {
             delete temp;
             length--;
         }
+
+        void prepend(int mValue)
+        {
+            Node* newNode = new Node(mValue);
+
+            if(0 == length)
+            {
+                head = newNode;
+                tail = newNode;
+            }
+            else
+            {
+                newNode->next = head;
+                head = newNode;
+            }
+            length++;
+        }
 };
 
 int main()
 {
-    LinkedList* myLinkedList = new LinkedList(1);
-    myLinkedList->append(2);
-
-    cout << "LL before deleteLast(): \n";
-    myLinkedList->printList();
-
-    myLinkedList->deleteLast();
-    cout << "\n\nLL after frist deleteLast(): \n";
-    myLinkedList->printList();
-
-    myLinkedList->deleteLast();
-    cout << "\n\nLL after second deleteLast(): \n";
-    myLinkedList->printList();
-
-    myLinkedList->deleteLast();
-    cout << "\n\nLL after third deleteLast(): \n";
+    LinkedList* myLinkedList = new LinkedList(2);
+    myLinkedList->append(3);
+    myLinkedList->prepend(1);
     myLinkedList->printList();
 
     return 0;
 }
-
-/*
-Result
-
-LL before deleteLast(): 
-1
-2
-
-
-LL after frist deleteLast():
-1
-
-
-LL after second deleteLast():
-
-
-LL after third deleteLast():
-
-
-*/
