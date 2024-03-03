@@ -251,17 +251,32 @@ class LinkedList {
             return pre;            
         }
 
+        /* LEETCODE PROBLEM 141. Linked List Cycle
+            @link: https://leetcode.com/problems/linked-list-cycle/description/
+        */
+        bool hasLoop()
+        {
+                Node *tortoise, *hare;
+                tortoise = hare = head;
+                bool ret = false;
+                while(hare != nullptr && hare->next != nullptr)
+                {
+                    hare = (hare->next)->next;
+                    tortoise = tortoise->next;
+                    if (tortoise == hare)
+                    {
+                        ret = true;
+                        break;
+                    }
+                }
+                return ret;
+        }
+
+
 };
 
 int main()
 {
-    LinkedList* myLinkedList = new LinkedList(0);
-    myLinkedList->append(1);
-    myLinkedList->append(2);
-    myLinkedList->append(3);
-    myLinkedList->append(4);
-    myLinkedList->append(5);
-    
-    cout << "Middle of Linked List: " << myLinkedList->findMiddleNode()->value;
+
     return 0;
 }
