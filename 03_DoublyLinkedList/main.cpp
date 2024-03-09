@@ -106,16 +106,65 @@ class DoublyLinkedList{
             }
             length++;
         }
+
+        void deleteFirst()
+        {
+            if (0 == length)
+            {
+                return;
+            }
+            Node *temp = head;
+            if (1 == length)
+            {
+                head = nullptr;
+                tail = nullptr;
+            }
+            else
+            {
+                head = head->next;
+                head->prev = nullptr;
+            }
+            delete temp;
+            length--;
+        }
+
+        Node *get(int index) {
+            if (index < 0 || index >= length) {
+                return nullptr;
+            }
+
+            Node *temp = head;
+            if (index < length/2)
+            {
+                for(int i = 0; i < index; i++)
+                {
+                    temp = temp->next;
+                }
+            }
+            else
+            {
+                temp = tail;
+                for(int i = 0; i < length-index-1; i++) // or for(int i = length-1; i > index; i--)
+                {
+                    temp = temp->prev;
+                }
+            }
+            return temp;
+        }
 };
 
 int main()
 {
-    DoublyLinkedList* myDLL = new DoublyLinkedList(1);
+    DoublyLinkedList* myDLL = new DoublyLinkedList(0);
+    myDLL->append(1);
     myDLL->append(2);
-    // myDLL->append(3);
-    // myDLL->append(4);
-    // myDLL->append(5);
-    myDLL->prepend(10);
-    myDLL->printList();
+    myDLL->append(3);
+    myDLL->append(4);
+    myDLL->append(5);
+    myDLL->append(6);
+    myDLL->append(7);
+
+    cout << myDLL->get(4)->value;
+    
     return 0;
 }
