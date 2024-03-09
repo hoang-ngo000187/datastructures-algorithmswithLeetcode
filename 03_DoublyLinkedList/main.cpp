@@ -90,6 +90,22 @@ class DoublyLinkedList{
             delete temp;
             length--;
         }
+
+        void prepend(int value)
+        {
+            Node *newNode = new Node(value);
+            if (0 == length) {
+                head = newNode;
+                tail = newNode;
+            }
+            else
+            {
+                newNode->next = head;
+                head->prev = newNode;
+                head = newNode;
+            }
+            length++;
+        }
 };
 
 int main()
@@ -99,13 +115,7 @@ int main()
     // myDLL->append(3);
     // myDLL->append(4);
     // myDLL->append(5);
-    myDLL->deleteLast();
-    myDLL->printList();
-
-    myDLL->deleteLast();
-    myDLL->printList();
-
-    myDLL->deleteLast();
+    myDLL->prepend(10);
     myDLL->printList();
     return 0;
 }
