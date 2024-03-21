@@ -54,17 +54,54 @@ class Queue
         {
             cout << "Length: " << length << endl;
         }
+
+        void enqueue(int value)
+        {
+            Node *newNode = new Node(value);
+            if (0 == length)
+            {
+                first = newNode;
+                last = newNode;
+            }
+            else
+            {
+                last->next = newNode;
+                last = newNode;
+            }
+            length++;
+        }
+
+        int dequeue()
+        {
+            if(0 == length) return INT_MIN;
+
+            Node *temp = first;
+            int dequeuedValue = first->value;
+            if(length == 1)
+            {
+                first = nullptr;
+                last = nullptr;
+            }
+            else
+            {
+                first = first->next;
+            }
+            delete temp;
+            length--;
+
+            return dequeuedValue;
+        }
 };
 
 int main()
 { 
-    Queue *myQueue = new Queue(7);
+    Queue *myQueue = new Queue(1);
 
-    myQueue->getFirst();
-    myQueue->getLast();
-    myQueue->getLength();
+    myQueue->enqueue(2);
 
-    myQueue->printQueue();
+    cout << "Dequeued value: " << myQueue->dequeue();
+    cout << "\n\nDequeued value: " << myQueue->dequeue();
+    cout << "\n\nDequeued value: " << myQueue->dequeue();
 
     return 0;
 }
