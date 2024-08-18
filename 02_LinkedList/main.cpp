@@ -5,7 +5,6 @@ class Node {
     public:
         int value;
         Node* next;
-
         /* Constructor */
         Node(int mValue) { 
             this->value = mValue;
@@ -90,7 +89,7 @@ class LinkedList {
             if (1 == length)
             {
                 head = nullptr;
-                tail = nullptr;
+                tail = nullptr; 
             }
             else
             {
@@ -233,25 +232,30 @@ class LinkedList {
                 temp = after;
             }
         }
+
+        bool isPalindrome()
+        {
+            /*
+            Sử dụng phương pháp Fast & Slow pointer.
+                + Fast pointer: di chuyển 2 node 1 lúc.
+                + Slow pointer: di chuyển 1 node 1 lúc.
+            ==> Khi Fast pointer đạt đến tail, Slow pointer sẽ đang trỏ ở điểm giữa của linked list.
+            
+            */
+        }
 };
+
+
 
 int main()
 {
-    LinkedList* myLinkedList = new LinkedList(0);
-    myLinkedList->append(1);
-    myLinkedList->append(2);
-    myLinkedList->append(3);
-    myLinkedList->append(4);
-    myLinkedList->append(5);
-    cout << "Before reverse LinkedList: \n";
-    myLinkedList->printList();
+    LinkedList* myLinkedList1 = new LinkedList(1);
+    myLinkedList1->append(2);
+    myLinkedList1->append(4);
 
-    cout << "After reverse LinkedList: \n";
-    myLinkedList->reverse();
-    myLinkedList->printList();
-
-    myLinkedList->deleteNode(2);
-    myLinkedList->printList();
+    LinkedList* myLinkedList2 = new LinkedList(1);
+    myLinkedList2->append(3);
+    myLinkedList2->append(4);
 
     return 0;
 }
