@@ -67,6 +67,22 @@ class HashTable {
                 temp->next = newNode;
             }
         }
+
+        int get(string key)
+        {
+            int index = hash(key);
+
+            Node* temp = dataMap[index];
+            while(temp != nullptr)
+            {
+                if (temp->key == key)
+                {
+                    return temp->value;
+                }
+                temp = temp->next;
+            }
+            return 0;
+        }
 };
 
 int main()
@@ -81,6 +97,9 @@ int main()
     myHastTable->set("screws", 140);
 
     myHastTable->printTable();
+
+    cout << "tile: " << myHastTable->get("tile") << endl;
+    cout << "fox: " << myHastTable->get("fox") << endl;
 
     return 0;
 }
