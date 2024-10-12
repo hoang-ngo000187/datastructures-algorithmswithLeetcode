@@ -55,6 +55,28 @@ class BinarySearchTree {
                 }
             }
         }
+
+        bool contains(int value)
+        {    
+            Node* temp = root;
+
+            while(temp != nullptr) /* Condition is also check for root = nullptr */
+            {
+                if (value < temp->value)
+                {
+                    temp = temp->left;
+                }
+                else if (value > temp->value)
+                {
+                    temp = temp->right;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 };
 
 int main()
