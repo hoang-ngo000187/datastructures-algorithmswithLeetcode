@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -83,6 +84,22 @@ class HashTable {
             }
             return 0;
         }
+
+        vector<string> keys()
+        {
+            vector<string> allKeys;
+            for(int i = 0; i < SIZE; i++)
+            {
+                Node* temp = dataMap[i];
+
+                while (temp != nullptr)
+                {
+                    allKeys.push_back(temp->key);
+                    temp = temp->next;
+                }
+            }
+            return allKeys;
+        }
 };
 
 int main()
@@ -98,8 +115,12 @@ int main()
 
     myHastTable->printTable();
 
-    cout << "tile: " << myHastTable->get("tile") << endl;
-    cout << "fox: " << myHastTable->get("fox") << endl;
+    vector<string> myKeys = myHastTable->keys();
+
+    for(auto key: myKeys)
+    {
+        cout << key << " ";
+    }
 
     return 0;
 }
